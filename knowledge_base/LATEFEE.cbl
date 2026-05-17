@@ -1,0 +1,14 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. LATEFEE.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 WS-CARD-TYPE        PIC X(10).
+       01 WS-DAYS-OVERDUE     PIC 9(3).
+       01 WS-FEE-AMOUNT       PIC 9(5)V99.
+       PROCEDURE DIVISION.
+           IF WS-CARD-TYPE = 'PLATINUM' AND WS-DAYS-OVERDUE < 6
+               MOVE 0 TO WS-FEE-AMOUNT
+           ELSE
+               COMPUTE WS-FEE-AMOUNT = WS-DAYS-OVERDUE * 2.50
+           END-IF.
+           GOBACK.
